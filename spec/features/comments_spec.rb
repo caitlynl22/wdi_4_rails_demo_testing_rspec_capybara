@@ -18,11 +18,12 @@ RSpec.feature 'Managing comments' do
       count: 2
   end
 
-  scenario 'Create an article' do
-    visit '/articles/#{article.id}/comments/new'
+  scenario 'Create a comment' do
+    article = Article.create!(title: 'Left Shark', body: 'Left Shark is awesome.')
+    visit "/articles/#{article.id}/comments/new"
 
     fill_in 'Body', with: 'Sharks are awesome!'
-    click_on 'Create Article'
+    click_on 'Create Comment'
 
     expect(page).to have_content(/success/i)
   end
